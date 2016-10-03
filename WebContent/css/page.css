@@ -1,0 +1,38 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	transition: .2s all linear;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+.bg {
+	position: fixed;
+	z-index: -10;
+}
+
+.page {
+	max-width: 1052px;
+	padding-bottom: 16%;
+	width: 78%;
+	margin: 0 auto;
+}
+
+p {
+	font-family: Arial;
+	color: #494949;
+}
+
+/* .support{ */
+/* 	float:right; */
+/* 	z-index:-20; */
+/* } */
+
+/* .support a{ */
+/* 	font-family:Arial; */
+/* 	color:#d3d3d3; */
+/* 	text-shadow:4px 4px 3px #000; */
+/* 	text-decoration:none; */
+/* } */

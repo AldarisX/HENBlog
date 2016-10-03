@@ -1,0 +1,31 @@
+.navside{
+	padding-top:2%;
+	margin-bottom:1%;
+	width:64%;
+}
+
+.navside a{
+	font-family:Arial;
+	font-size:150%;
+	color:#d3d3d3;
+	text-shadow:3px 3px 2px #000;
+	text-decoration:none;
+}
+
+.navside a:HOVER{
+	text-shadow:1px 1px 4px #b5fafe;
+}
+
+.navside ul{
+	font-size:14.7px;
+	font-weight:bold;
+	padding-top:1%;
+	padding-bottom:1%;
+}
+
+.navside li{
+	display:inline;
+	padding-right:20px;
+	padding-left:17px;
+	border-right-width:1px;
+}
