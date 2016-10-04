@@ -9,9 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+import com.Config;
 import com.JDBCUtils;
-
-import model.Config;
 
 /**
  * Servlet implementation class OnStartUP
@@ -33,6 +32,13 @@ public class OnStartUP extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		try {
+			Config.bName = readOption("bname");
+			Config.sex = readOption("sex");
+			Config.birthday = readOption("birthday");
+			Config.job = readOption("Job");
+			Config.loc = readOption("Loc");
+			Config.desc = readOption("desc");
+
 			JDBCUtils JDBC = new JDBCUtils();
 			ResultSet rs = JDBC.getQuery("select * from head order by sindex");
 			while (rs.next()) {
@@ -40,16 +46,10 @@ public class OnStartUP extends HttpServlet {
 				Config.headLink.add(rs.getString("link"));
 			}
 
-			JDBC.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			JDBCUtils JDBC = new JDBCUtils("information_schema");
+			JDBC = new JDBCUtils("information_schema");
 			PreparedStatement ps = JDBC
 					.getPST("select TABLE_ROWS from tables where TABLE_NAME='titles' and TABLE_SCHEMA='n_blog';");
-			ResultSet rs = JDBC.getQuery(ps);
+			rs = JDBC.getQuery(ps);
 
 			rs.next();
 			Config.titleCount = rs.getInt("TABLE_ROWS");
@@ -58,6 +58,20 @@ public class OnStartUP extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String readOption(String type) {
+		JDBCUtils JDBC = null;
+		try {
+			JDBC = new JDBCUtils();
+			ResultSet rs = JDBC.getQuery("select * from `option` where type='" + type + "';");
+			rs.next();
+			return rs.getString("value");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JDBC.close();
+		return "";
 	}
 
 }
