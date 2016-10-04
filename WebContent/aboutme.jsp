@@ -22,13 +22,7 @@
 				<b>基本信息：</b><br> <br> 性&nbsp;&nbsp;&nbsp;别：F/M<br> <br>
 				生&nbsp;&nbsp;&nbsp;日：x月x日<br> <br>
 				职&nbsp;&nbsp;&nbsp;业：NONE<br> <br> 现居地：Loc<br> <br>
-
-			<hr></p>
-
-			<p>
-				<br> <b>个人经历：</b><br> <br> 暂未添加。<br>
 			</p>
-			<br>
 			<hr>
 			<p>
 				<br> <b>个人简介：</b><br> <br> 这里是简介<br>
