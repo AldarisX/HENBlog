@@ -8,8 +8,40 @@
 <html>
 <head>
 <title>关于</title>
+<link rel="stylesheet" href="css/page.css" />
+<link rel="stylesheet" href="css/mian.css" />
 </head>
 <body>
+	<jsp:include page="background.jsp"></jsp:include>
+	<div class="page" align="center">
+		<jsp:include page="head.jsp"></jsp:include>
+		<div class="main" align="left">
+			<hr>
+			<br>
+			<p>
+				<b>基本信息：</b><br> <br> 性&nbsp;&nbsp;&nbsp;别：F/M<br> <br>
+				生&nbsp;&nbsp;&nbsp;日：x月x日<br> <br>
+				职&nbsp;&nbsp;&nbsp;业：NONE<br> <br> 现居地：Loc<br> <br>
 
+			<hr></p>
+
+			<p>
+				<br> <b>个人经历：</b><br> <br> 暂未添加。<br>
+			</p>
+			<br>
+			<hr>
+			<p>
+				<br> <b>个人简介：</b><br> <br> 这里是简介<br>
+			</p>
+			<br>
+			<hr>
+			<p>
+				<br> <b>认证类型：</b><br> <br> 暂未认证<br>
+			</p>
+			<br>
+			<hr>
+		</div>
+		<div class="bottom"></div>
+	</div>
 </body>
 </html>
