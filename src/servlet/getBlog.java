@@ -35,8 +35,13 @@ public class getBlog extends HttpServlet {
 		// TODO Auto-generated method stub
 		String re = request.getParameter("re");
 		if (re.equals("false")) {
-			new Content().addContent("Aldaris", request.getParameter("title"), request.getParameter("pretitle"),
-					request.getParameter("inner"));
+			String title = request.getParameter("title");
+			String pretitle = request.getParameter("pretitle");
+			String inner = request.getParameter("inner");
+			if (title.equals("") || pretitle.equals("") || inner.equals("")) {
+				response.sendError(404);
+			}
+			new Content().addContent(Config.bName, title, pretitle, inner);
 			Config.titleCount += 1;
 		} else if (re.equals("true")) {
 			new Content().updateContent(Integer.parseInt(request.getParameter("id")), request.getParameter("title"),
