@@ -32,12 +32,6 @@
 	margin-left: 4%;
 	margin-bottom: 1.5%;
 }
-
-.HENMenu{
-	position:fixed;
-	left:86%;
-	bottom:2%;
-}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="highlight/highlight.pack.js"></script>

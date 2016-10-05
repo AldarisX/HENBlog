@@ -4,6 +4,13 @@
 	boolean isLogin = Boolean.parseBoolean(request.getParameter("isLogin"));
 	int userLv = Integer.parseInt(request.getParameter("uLv"));
 %>
+<style>
+.HENMenu{
+	position:fixed;
+	right:6%;
+	bottom:2%;
+}
+</style>
 <div class="HENMenu">
 		<%
 			if(isLogin){
