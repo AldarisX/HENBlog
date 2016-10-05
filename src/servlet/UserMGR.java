@@ -51,8 +51,8 @@ public class UserMGR extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
-		PrintWriter out = response.getWriter(); 
-		
+		PrintWriter out = response.getWriter();
+
 		String cm = request.getParameter("cm");
 		if (cm.equals("login")) {
 			String userName = request.getParameter("uName");
@@ -74,13 +74,17 @@ public class UserMGR extends HttpServlet {
 					session.setAttribute("isLogin", true);
 					out.println("succ");
 				} else {
-					//out.println("fail");
 					response.sendError(401);
 				}
 				JDBC.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} else if (cm.equals("logout")) {
+			HttpSession httpsession = request.getSession();
+			httpsession.invalidate();
+			String root = request.getHeader("Host") + request.getContextPath();
+			response.sendRedirect("http://" + root + "/index.jsp");
 		}
 	}
 
