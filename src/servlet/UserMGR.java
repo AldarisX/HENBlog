@@ -42,7 +42,7 @@ public class UserMGR extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at:
 		// ").append(request.getContextPath());
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String cm = request.getParameter("cm");
@@ -95,15 +95,17 @@ public class UserMGR extends HttpServlet {
 			}
 		} else if (cm.equals("logout")) {
 			HttpSession httpsession = request.getSession();
+			httpsession.removeAttribute("isLogin");
+			httpsession.removeAttribute("uInfo");
 			httpsession.invalidate();
 			String root = request.getHeader("Host") + request.getContextPath();
 			response.sendRedirect("http://" + root + "/index.jsp");
 		} else if (cm.equals("regist")) {
 			try {
 				String uName = request.getParameter("uName");
-				if(uName.trim().equals("")){
+				if (uName.trim().equals("")) {
 					out.println("不要修改网页代码\n请好好输入用户名");
-				}else{
+				} else {
 					String passwd = MD5Util.string2MD5(request.getParameter("passwd"));
 					String passwd2 = MD5Util.string2MD5(request.getParameter("passwd2"));
 					String email = request.getParameter("email");
