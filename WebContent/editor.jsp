@@ -1,6 +1,7 @@
 <%@page import="com.Config"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="mgr/reqadmin.jsp"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -26,13 +27,13 @@
 	text-shadow: 5px 5px 4px #666;
 	font-size: 86%;
 	resize: none;
-	width:99.5%;
+	width: 99.5%;
 }
 
-#btn{
-	width:16%;
+#btn {
+	width: 16%;
 	font-size: 100%;
-	padding:0.5%;
+	padding: 0.5%;
 }
 </style>
 
@@ -67,7 +68,9 @@ var id=0;
 			"inner" : stem
 		}, function(result) {
 			alert("提交成功");
-		});
+		}).error(function(){alert("提交失败,请检查数据的完整性");});
+		
+		return false;
 	}
 
 	function GetQueryString(name) {
@@ -81,22 +84,27 @@ var id=0;
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
 		<div class="main" align="left">
-			<h2>
-				标题:<br>
-				<textarea name="title" class="title" rows="1" cols="32"></textarea>
-			</h2>
-			<br>
-			<p>摘要:</p>
-			<textarea id="pretitle" class="ckeditor"></textarea>
-			<br> <br>
-			<p>正文:</p>
-			<textarea id="uinput" cols="0" rows="0" class="ckeditor"></textarea>
-			<br>
-			<button id="btn" onclick="btn_Sure()">提交</button>
+			<form method="post" onsubmit="return btn_Sure();">
+				<legend>写一个新博客</legend>
+				<div class="mui-textfield mui-textfield--float-label">
+					<input type="text" name="title" class="title" required="required"> <label class="h2">这里写标题</label>
+				</div>
+				<div>
+					<label class="h2">这里写内容</label>
+					<textarea id="pretitle" class="ckeditor" required="required"></textarea>
+				</div>
+				<br>
+				<div>
+					<label class="h2">这里写内容</label>
+					<textarea id="uinput" class="ckeditor"></textarea>
+				</div>
+				<button type="submit" class="mui-btn mui-btn--raised" required="required">提交</button>
+			</form>
 		</div>
 		<div class="bottom"></div>
 	</div>

@@ -23,6 +23,10 @@
 	margin-left: 4%;
 	margin-bottom: 1.5%;
 }
+
+.seForm{
+	width:75%;
+}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="highlight/highlight.pack.js"></script>
@@ -35,25 +39,32 @@
 			$(".main").empty();
 			for ( var x in data) {
 				console.log(data[x].title);
-				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+data[x].id+"\"'><div class='tcblock'><h2><a href='blog.jsp?tid="+data[x].id+"'>"+data[x].title+"</a></h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[x].pre+"</p></div></div>")
+				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+data[x].id+"\"'><div class='tcblock'><h2>"+data[x].title+"</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[x].pre+"</p></div></div>")
 			}
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block);
 			});
 		});
+		return false;
 	}
 </script>
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<jsp:include page="UserAlert.jsp"></jsp:include>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
 		<div class="search">
-			<input type="text" name="inBox" id="inbox" required="required" />
-			<button type="button" id="surebtn" onclick="serBtnClick()">搜索</button>
+			<form class="mui-form--inline" onsubmit="return serBtnClick();">
+ 				<div class="mui-textfield mui-textfield--float-label seForm">
+    				<input type="text" name="inBox" id="inbox" required="required">
+    				<label>输入想要搜索的内容</label>
+ 			 	</div>
+  				<input type="submit" class="mui-btn" value="搜索" />
+			</form>
 		</div>
-		<div class="main" align="left" style="display: none;"></div>
+		<div class="main mui-row" align="left" style="display: none;"></div>
 		<div class="bottom"></div>
 	</div>
 </body>

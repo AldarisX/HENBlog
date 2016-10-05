@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page import="com.Config"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -31,6 +32,12 @@
 	margin-left: 4%;
 	margin-bottom: 1.5%;
 }
+
+.HENMenu{
+	position:fixed;
+	left:86%;
+	bottom:2%;
+}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="highlight/highlight.pack.js"></script>
@@ -47,7 +54,7 @@ var index=1;
 		$.getJSON(url,function(data) {
 			var titles = data.titles;
 			for(var x in titles){
-				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+titles[x].id+"\"'><div class='tcblock'><h2><a href='blog.jsp?tid="+titles[x].id+"'>"+titles[x].title+"</a></h2><p class='ptime'></p><p>&nbsp;&nbsp;&nbsp;&nbsp;"+titles[x].pre+"</p></div></div>")
+				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+titles[x].id+"\"'><div class='tcblock'><h2>"+titles[x].title+"</h2><p class='ptime'></p><p>&nbsp;&nbsp;&nbsp;&nbsp;"+titles[x].pre+"</p></div></div>")
 			}
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block);
@@ -68,16 +75,29 @@ var index=1;
 			return unescape(r[2]);
 		return null;
 	}
+	
+	var sdelay=0;
+	function returnTop() {
+	 window.scrollBy(0,-25);//Only for y vertical-axis
+	 if(document.body.scrollTop>0) { 
+	  sdelay= setTimeout('returnTop()',5);
+	 }
+	}
 </script>
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
-		<div class="main" align="left"></div>
-		<div class="pnpage"></div>
-		<div class="bottom"></div>
+		<div class="main mui-row" align="left"></div>
+		<div class="pnpage mui-row"></div>
+		<jsp:include page="HENMenu.jsp">
+			<jsp:param value="<%=isLogin%>" name="isLogin"/>
+			<jsp:param value="<%=u.getLevel()%>" name="uLv"/>
+		</jsp:include>
+		
 	</div>
 </body>
 </html>

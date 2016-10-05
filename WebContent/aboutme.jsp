@@ -14,6 +14,7 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 		<div class="main" align="left">

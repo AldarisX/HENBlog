@@ -13,10 +13,11 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<jsp:include page="UserAlert.jsp"></jsp:include>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
-		<div class="main" align="left"></div>
+		<div class="main mui-row" align="left"></div>
 		<div class="bottom"></div>
 	</div>
 </body>

@@ -1,6 +1,6 @@
 <%@page import="com.Config"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -21,7 +21,7 @@
 		$.getJSON("contjson.jsp?tid=<%=id%>", function(data) {
 					if (!jQuery.isEmptyObject(data)) {
 						document.title = document.title + "  " + data.title;
-						$("#maintext").append("<hr><br><h2>" + data.title+ "</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+ data.content + "</p><br><hr>");
+						$("#maintext").append("<h2>" + data.title+ "</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+ data.content + "</p>");
 						$('pre code').each(function(i, block) {
 							hljs.highlightBlock(block);
 						});
@@ -37,9 +37,7 @@
 		if (r == true) {
 			$.post("getBlog", {
 				"re" : "del",
-				"id" :
-<%=id%>
-	,
+				"id" :<%=id%>,
 			}, function(result) {
 				window.location.href = "index.jsp";
 			});
@@ -49,17 +47,23 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
 		<div class="main">
 			<div id="maintext" align="left"></div>
 		</div>
+		<%
+			if(isLogin&&u.getLevel()<2){
+		%>
 		<div id="mgr">
 			<a href="editor.jsp?re=true&tid=<%=id%>">编辑</a>&nbsp;<a
 				onclick="delSure()" href="">删除</a>
 		</div>
-		<div class="bottom"></div>
+		<%
+			}
+		%>
 	</div>
 </body>
 </html>

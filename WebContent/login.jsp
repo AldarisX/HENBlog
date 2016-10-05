@@ -34,6 +34,7 @@
 		}, function(result) {
 			window.location.href = "index.jsp";
 		}) .error(function(){alert("登陆失败,请检查账号或者密码");});
+		return false;
 	}
 </script>
 </head>
@@ -43,9 +44,18 @@
 		<jsp:include page="head.jsp"></jsp:include>
 
 		<div class="main" align="left">
-			<p><input class="uName" type="text" name="uName" placeholder="请输入用户名" /></p>
-			<p><input class="passwd" type="password" name="passwd" placeholder="请输入密码" /></p>
-			<p><input class="btn" type="submit" value="登陆" onclick="login_Sure()" /></p>
+			<form method="post" onsubmit="return login_Sure();">
+				<legend>登陆</legend>
+				<div class="mui-textfield mui-textfield--float-label">
+    				<input class="uName" type="text" name="uName" required="required">
+    				<label>请输入用户名</label>
+  				</div>
+  				<div class="mui-textfield mui-textfield--float-label">
+    				<input class="passwd" type="password" name="passwd" required="required">
+    				<label>请输入密码</label>
+  				</div>
+  				<button type="submit" class="mui-btn mui-btn--raised">登陆</button>
+			</form>
 		</div>
 		<div class="bottom"></div>
 	</div>
