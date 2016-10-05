@@ -119,7 +119,7 @@ public class UserMGR extends HttpServlet {
 							ps.setString(1, uName);
 							ps.setString(2, passwd);
 							ps.setString(3, email);
-							int i = ps.executeUpdate();
+							int i = JDBC.getUpdate(ps);
 							if (i != 1) {
 								out.println("出现严重错误\n请练习管理员检查数据库");
 							} else {
