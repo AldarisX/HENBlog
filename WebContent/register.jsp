@@ -15,10 +15,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 	function reg_Sure() {
-		if(Trim($(".uName")).length==0){
-			alert("请好好输入用户名");
-		}else{
-			if ($(".passwd").val() == $(".passwd2").val()) {
+		if ($(".passwd").val() == $(".passwd2").val()) {
 				$.post("UserMGR", {
 					"cm":"regist",
 					"uName":$(".uName").val(),
@@ -27,20 +24,12 @@
 					"email":$(".email").val()
 				}, function(result) {
 					alert(result);
-					if(result.indexOf("成功")>0){
-						window.location.href = "index.jsp";
-					}
+					window.location.href = "index.jsp";
 				}) .error(function(){alert("登陆失败,请检查账号或者密码");});
 			} else {
 				alert("两次输入的密码不匹配");
 			}
-		}
 		return false;
-	}
-	
-	function Trim(str)
-    { 
-        return str.replace(/(^\s*)|(\s*$)/g, ""); 
 	}
 </script>
 </head>
