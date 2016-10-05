@@ -40,7 +40,14 @@ public class UserMGR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String cm = request.getParameter("cm");
+		if (cm.equals("logout")) {
+			HttpSession httpsession = request.getSession();
+			httpsession.invalidate();
+			String root = request.getHeader("Host") + request.getContextPath();
+			response.sendRedirect("http://" + root + "/index.jsp");
+		}
 	}
 
 	/**
@@ -50,7 +57,7 @@ public class UserMGR extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// doGet(request, response);
+		doGet(request, response);
 		PrintWriter out = response.getWriter();
 
 		String cm = request.getParameter("cm");
