@@ -40,7 +40,11 @@ public class UserMGR extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at:
+		// ").append(request.getContextPath());
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String cm = request.getParameter("cm");
 		if (cm.equals("logout")) {
 			HttpSession httpsession = request.getSession();
@@ -57,6 +61,8 @@ public class UserMGR extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 		PrintWriter out = response.getWriter();
 
@@ -92,7 +98,47 @@ public class UserMGR extends HttpServlet {
 			httpsession.invalidate();
 			String root = request.getHeader("Host") + request.getContextPath();
 			response.sendRedirect("http://" + root + "/index.jsp");
+		} else if (cm.equals("regist")) {
+			try {
+				String uName = request.getParameter("uName");
+				if(uName.trim().equals("")){
+					out.println("不要修改网页代码\n请好好输入用户名");
+				}else{
+					String passwd = MD5Util.string2MD5(request.getParameter("passwd"));
+					String passwd2 = MD5Util.string2MD5(request.getParameter("passwd2"));
+					String email = request.getParameter("email");
+					if (passwd.equals(passwd2)) {
+						if (getUser(uName).next()) {
+							out.print("已存在同名用户,请换一个用户名");
+						} else {
+							JDBCUtils JDBC = new JDBCUtils();
+							PreparedStatement ps = JDBC.getPST(
+									"INSERT INTO `n_blog`.`user` (`userName`, `passwd`, `email`) VALUES (?, ?, ?);");
+							ps.setString(1, uName);
+							ps.setString(2, passwd);
+							ps.setString(3, email);
+							int i = ps.executeUpdate();
+							if (i != 1) {
+								out.println("出现严重错误\n请练习管理员检查数据库");
+							} else {
+								out.println("注册成功");
+							}
+						}
+					} else {
+						out.println("不要修改网页代码\n两次密码不一致");
+					}
+				}
+			} catch (Exception e) {
+				response.sendError(500);
+			}
 		}
+	}
+
+	public ResultSet getUser(String uName) throws SQLException {
+		JDBCUtils JDBC = new JDBCUtils();
+		PreparedStatement ps = JDBC.getPST("select * from user where userName=?");
+		ps.setString(1, uName);
+		return ps.executeQuery();
 	}
 
 }
