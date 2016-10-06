@@ -1,0 +1,7 @@
+{
+	"url": "jdbc:mysql://127.0.0.1/",
+	"dbName": "n_blog",
+	"driver": "com.mysql.jdbc.Driver",
+	"user": "root",
+	"passwd": "aldaris"
+}

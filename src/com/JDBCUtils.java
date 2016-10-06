@@ -10,11 +10,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class JDBCUtils {
-	public static final String url = "jdbc:mysql://127.0.0.1/";
-	public static final String dbName = "n_blog";
-	public static final String name = "com.mysql.jdbc.Driver";
-	public static final String user = "root";
-	public static final String password = "aldaris";
+	public static String url = "jdbc:mysql://127.0.0.1/";
+	public static String dbName = "n_blog";
+	public static String driver = "com.mysql.jdbc.Driver";
+	public static String user = "root";
+	public static String passwd = "aldaris";
 
 	public Connection conn = null;
 	public Statement st = null;
@@ -38,7 +38,7 @@ public class JDBCUtils {
 
 	{
 		try {
-			Class.forName(name);
+			Class.forName(driver);
 		} catch (ClassNotFoundException e2) {
 			e2.printStackTrace();
 		}
@@ -58,7 +58,7 @@ public class JDBCUtils {
 		boolean tryGetConn = true;
 		try {
 			while (tryGetConn) {
-				conn = DriverManager.getConnection(url + dbName, user, password);
+				conn = DriverManager.getConnection(url + dbName, user, passwd);
 				tryGetConn = false;
 			}
 		} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException e) {
@@ -76,7 +76,7 @@ public class JDBCUtils {
 		boolean tryGetConn = true;
 		try {
 			while (tryGetConn) {
-				conn = DriverManager.getConnection(url + dbName, user, password);
+				conn = DriverManager.getConnection(url + dbName, user, passwd);
 				tryGetConn = false;
 			}
 		} catch (com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException e) {
