@@ -3,6 +3,7 @@ package com;
 import java.util.ArrayList;
 
 public class Config {
+	public static String warLoc = "";
 	// 博客的设置
 	public static String bName = "";
 	public static String sex = "";

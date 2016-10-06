@@ -1,16 +1,23 @@
 package servlet;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URLDecoder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 import com.Config;
 import com.JDBCUtils;
+
+import tool.Tool;
 
 /**
  * Servlet implementation class OnStartUP
@@ -31,6 +38,15 @@ public class OnStartUP extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
+		try {
+			Config.warLoc = (config.getServletContext().getResource("/")).toString();
+			Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:/", ""), "utf-8");
+		} catch (MalformedURLException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		Tool.dirClean(new File(Config.warLoc + "/vmsp/"), true);
+
 		try {
 			Config.bName = readOption("bname");
 			Config.sex = readOption("sex");
