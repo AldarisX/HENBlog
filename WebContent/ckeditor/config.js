@@ -40,7 +40,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraPlugins = 'clipboard,lineutils,widget,dialog,codesnippet';
 	
 	//图片上载的响应页面
-	config.filebrowserUploadUrl="actions/ckeditorUpload";
+	config.filebrowserUploadUrl="getPIC";
 	
 	config.toolbarCanCollapse = true;
 };

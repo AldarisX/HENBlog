@@ -21,6 +21,7 @@
 			u.getLevel();
 		} catch (Exception e) {
 			u = new User();
+			isLogin = false;
 		}
 		if (u.getLevel() <= 2) {
 %>
