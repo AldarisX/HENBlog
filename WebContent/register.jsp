@@ -58,6 +58,7 @@
 					<label>请输入邮箱</label>
 				</div>
 				<button type="submit" class="mui-btn mui-btn--raised">注册</button>
+				<button type="button" onclick="javascript:window.location.href='login.jsp'" class="mui-btn mui-btn--raised">注册</button>
 			</form>
 		</div>
 		<div class="bottom"></div>
