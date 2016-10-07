@@ -55,6 +55,7 @@
     				<label>请输入密码</label>
   				</div>
   				<button type="submit" class="mui-btn mui-btn--raised">登陆</button>
+  				<button type="button" onclick="javascript:window.location.href='register.jsp'" class="mui-btn mui-btn--raised">注册</button>
 			</form>
 		</div>
 		<div class="bottom"></div>
