@@ -59,6 +59,15 @@ public class Tool {
 	}
 
 	public static void delVMSP(File dir, String fileName) {
-
+		File[] children = dir.listFiles();
+		if (children != null) {
+			for (final File child : children) {
+				if (child.isFile()) {
+					if (child.getName().startsWith(fileName)) {
+						child.delete();
+					}
+				}
+			}
+		}
 	}
 }

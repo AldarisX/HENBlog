@@ -36,7 +36,7 @@
 		var r = confirm("确定删除?");
 		if (r == true) {
 			$.post("getBlog", {
-				"re" : "del",
+				"cm" : "del",
 				"id" :<%=id%>,
 			}, function(result) {
 				window.location.href = "index.jsp";

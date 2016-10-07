@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.Config;
 
 import model.Content;
+import tool.Tool;
 
 /**
  * Servlet implementation class getBlog
@@ -33,22 +35,26 @@ public class getBlog extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String re = request.getParameter("re");
-		if (re.equals("false")) {
+		String cm = request.getParameter("cm");
+		if (cm.equals("false")) {
 			String title = request.getParameter("title");
 			String pretitle = request.getParameter("pretitle");
 			String inner = request.getParameter("inner");
 			if (title.equals("") || pretitle.equals("") || inner.equals("")) {
 				response.sendError(404);
+			} else {
+				new Content().addContent(Config.bName, title, pretitle, inner);
+				Config.titleCount += 1;
+				Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson.jsp");
 			}
-			new Content().addContent(Config.bName, title, pretitle, inner);
-			Config.titleCount += 1;
-		} else if (re.equals("true")) {
+		} else if (cm.equals("true")) {
 			new Content().updateContent(Integer.parseInt(request.getParameter("id")), request.getParameter("title"),
 					request.getParameter("pretitle"), request.getParameter("inner"));
 			Config.titleCount -= 1;
-		} else if (re.equals("del")) {
-			new Content().delContent(Integer.parseInt(request.getParameter("id")));
+		} else if (cm.equals("del")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			new Content().delContent(id);
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + id + "-.json");
 		}
 	}
 

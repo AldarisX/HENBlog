@@ -61,7 +61,7 @@ var id=0;
 		var stem = CKEDITOR.instances.uinput.getData();
 
 		$.post("getBlog", {
-			"re" : re,
+			"cm" : re,
 			"id" : id,
 			"title" : title,
 			"pretitle" : pretitle,
