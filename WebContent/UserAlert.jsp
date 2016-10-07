@@ -17,6 +17,12 @@
 	User u = new User();
 	if (isLogin) {
 		u = (User) session.getAttribute("uInfo");
+		try {
+			u.getLevel();
+		} catch (Exception e) {
+			u = new User();
+		}
+		if (u.getLevel() <= 2) {
 %>
 <html>
 <head>
@@ -53,5 +59,6 @@
 </body>
 </html>
 <%
+	}
 	}
 %>

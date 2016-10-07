@@ -97,7 +97,7 @@ public class UserMGR extends HttpServlet {
 			HttpSession httpsession = request.getSession();
 			httpsession.removeAttribute("isLogin");
 			httpsession.removeAttribute("uInfo");
-			//httpsession.invalidate();
+			httpsession.invalidate();
 			String root = request.getHeader("Host") + request.getContextPath();
 			response.sendRedirect("http://" + root + "/index.jsp");
 		} else if (cm.equals("regist")) {

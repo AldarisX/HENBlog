@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -15,9 +16,9 @@
 			retry = true;
 		}
 		if (retry) {
-			//session.invalidate();
 			session.removeAttribute("isLogin");
 			session.removeAttribute("uInfo");
+			session.invalidate();
 			session.setAttribute("retry", false);
 			response.sendRedirect(prePage);
 		}
