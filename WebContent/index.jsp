@@ -53,11 +53,14 @@ var index=1;
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block);
 			});
-			if(index!="1"){
-				$(".pnpage").append("<a href='index.jsp?index=<%=index-1%>'>上一页</a>");
-			}
-			if(data.maxCount/(<%=Config.logCount*index%>)>=1){
-				$(".pnpage").append("<a href='index.jsp?index=<%=index+1%>'>下一页</a>");
+			if(data.maxCount>15){
+				$(".main").after("<div class='pnpage mui-row'></div>");
+				if(index!="1"){
+					$(".pnpage").append("<a href='index.jsp?index=<%=index-1%>'>上一页</a>");
+				}
+				if(data.maxCount/(<%=Config.logCount*index%>)>=1){
+					$(".pnpage").append("<a href='index.jsp?index=<%=index+1%>'>下一页</a>");
+				}
 			}
 		});
 	});
@@ -86,7 +89,6 @@ var index=1;
 		<jsp:include page="head.jsp"></jsp:include>
 
 		<div class="main mui-row" align="left"></div>
-		<div class="pnpage mui-row"></div>
 		<jsp:include page="HENMenu.jsp">
 			<jsp:param value="<%=isLogin%>" name="isLogin"/>
 			<jsp:param value="<%=u.getLevel()%>" name="uLv"/>
