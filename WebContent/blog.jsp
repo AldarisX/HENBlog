@@ -64,6 +64,10 @@
 		<%
 			}
 		%>
+		<jsp:include page="HENMenu.jsp">
+			<jsp:param value="<%=isLogin%>" name="isLogin"/>
+			<jsp:param value="<%=u.getLevel()%>" name="uLv"/>
+		</jsp:include>
 	</div>
 </body>
 </html>

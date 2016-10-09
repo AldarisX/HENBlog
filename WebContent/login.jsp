@@ -40,6 +40,7 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
@@ -58,7 +59,10 @@
   				<button type="button" onclick="javascript:window.location.href='register.jsp'" class="mui-btn mui-btn--raised">注册</button>
 			</form>
 		</div>
-		<div class="bottom"></div>
+		<jsp:include page="HENMenu.jsp">
+			<jsp:param value="<%=isLogin%>" name="isLogin"/>
+			<jsp:param value="<%=u.getLevel()%>" name="uLv"/>
+		</jsp:include>
 	</div>
 </body>
 </html>

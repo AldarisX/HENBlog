@@ -51,7 +51,7 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
-	<jsp:include page="UserAlert.jsp"></jsp:include>
+	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
@@ -65,7 +65,10 @@
 			</form>
 		</div>
 		<div class="main mui-row" align="left" style="display: none;"></div>
-		<div class="bottom"></div>
+		<jsp:include page="HENMenu.jsp">
+			<jsp:param value="<%=isLogin%>" name="isLogin"/>
+			<jsp:param value="<%=u.getLevel()%>" name="uLv"/>
+		</jsp:include>
 	</div>
 </body>
 </html>
