@@ -3,6 +3,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	
+	String key = request.getParameter("key");
+	int index=1;
+	try{
+		index = Integer.parseInt(request.getParameter("index"));
+	}catch(Exception e){
+		
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,13 +45,23 @@
 		$.getJSON("searchresultjson.jsp?key=" + key, function(data) {
 			console.log(data);
 			$(".main").empty();
-			for ( var x in data) {
-				console.log(data[x].title);
-				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+data[x].id+"\"'><div class='tcblock'><h2>"+data[x].title+"</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[x].pre+"</p></div></div>")
+			var titles = data.titles;
+			for ( var x in titles) {
+				console.log(titles[x].title);
+				$(".main").append("<div class='tblock' onclick='window.location.href=\"blog.jsp?tid="+titles[x].id+"\"'><div class='tcblock'><h2>"+titles[x].title+"</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+titles[x].pre+"</p></div></div>")
 			}
 			$('pre code').each(function(i, block) {
 				hljs.highlightBlock(block);
 			});
+			if(data.maxCount>15){
+				$(".main").after("<div class='pnpage mui-row'></div>");
+				if(index!="1"){
+					$(".pnpage").append("<a href='index.jsp?index=<%=index-1%>'>上一页</a>");
+				}
+				if(data.maxCount/(<%=Config.logCount*index%>)>=1){
+					$(".pnpage").append("<a href='index.jsp?index=<%=index+1%>'>下一页</a>");
+				}
+			}
 		});
 		return false;
 	}

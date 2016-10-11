@@ -72,9 +72,19 @@ public class Titles {
 				addTitle(rs.getInt("id"), rs.getString("title"), rs.getString("pretitle"), rs.getString("user"),
 						rs.getDate("date"));
 			}
+
+			ps = JDBC.getPST("SELECT COUNT(*) FROM titles WHERE title like ? or pretitle like ?;");
+			ps.setString(1, key);
+			ps.setString(2, key);
+			rs = JDBC.getQuery(ps);
+			rs.next();
+			titleInfo.put("maxCount", rs.getInt(1) + "");
+
 			JDBC.close();
 
-			JSONArray jobj = JSONArray.fromObject(titles);
+			JSONObject jobj = JSONObject.fromObject(titleInfo);
+			JSONArray jarr = JSONArray.fromObject(titles);
+			jobj.put("titles", jarr);
 			return jobj.toString();
 		} catch (SQLException e) {
 			e.printStackTrace();
