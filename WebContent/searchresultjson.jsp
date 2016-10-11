@@ -10,15 +10,15 @@
 	response.setCharacterEncoding("UTF-8");
 
 	String content = "vmsp" + request.getServletPath() + Tool.transMapToString(request.getParameterMap())
-	+ ".json";
-	String content2 = "vmsp" + request.getServletPath() + URLEncoder.encode(Tool.transMapToString(request.getParameterMap()),"UTF-8")
-	+ ".json";
+			+ ".json";
+	String content2 = "vmsp" + request.getServletPath()
+			+ URLEncoder.encode(Tool.transMapToString(request.getParameterMap()), "UTF-8") + ".json";
 	String fileName = request.getRealPath("") + content;
-	if (Tool.isFileExist(new File(fileName))) {
+	if (Tool.isFileExist(new File(fileName), 300)) {
 		response.sendRedirect(content2);
 		return;
 	}
-	
+
 	String key = request.getParameter("key");
 
 	out = new ConstPageWriter(fileName);
