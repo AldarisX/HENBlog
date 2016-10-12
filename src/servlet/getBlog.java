@@ -36,7 +36,9 @@ public class getBlog extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String cm = request.getParameter("cm");
-		if (cm.equals("false")) {
+		
+		switch (cm) {
+		case "false":
 			String title = request.getParameter("title");
 			String pretitle = request.getParameter("pretitle");
 			String inner = request.getParameter("inner");
@@ -47,14 +49,18 @@ public class getBlog extends HttpServlet {
 				Config.titleCount += 1;
 				Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson.jsp");
 			}
-		} else if (cm.equals("true")) {
+			break;
+
+		case "true":
 			new Content().updateContent(Integer.parseInt(request.getParameter("id")), request.getParameter("title"),
 					request.getParameter("pretitle"), request.getParameter("inner"));
 			Config.titleCount -= 1;
-		} else if (cm.equals("del")) {
+			break;
+		case "del":
 			int id = Integer.parseInt(request.getParameter("id"));
 			new Content().delContent(id);
 			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + id + "-.json");
+			break;
 		}
 	}
 

@@ -67,15 +67,17 @@ public class UserMGR extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String cm = request.getParameter("cm");
-		if (cm.equals("login")) {
+
+		switch (cm) {
+		case "login":
 			String userName = request.getParameter("uName");
-			String passwd = MD5Util.string2MD5(request.getParameter("passwd"));
-			JDBCUtils JDBC;
+			String passwdl = MD5Util.string2MD5(request.getParameter("passwd"));
+			JDBCUtils JDBCl;
 			try {
-				JDBC = new JDBCUtils();
-				PreparedStatement ps = JDBC.getPST("select * from user where userName=? and passwd=?");
+				JDBCl = new JDBCUtils();
+				PreparedStatement ps = JDBCl.getPST("select * from user where userName=? and passwd=?");
 				ps.setString(1, userName);
-				ps.setString(2, passwd);
+				ps.setString(2, passwdl);
 				ResultSet rs = ps.executeQuery();
 				if (rs.next()) {
 					User u = new User();
@@ -89,37 +91,41 @@ public class UserMGR extends HttpServlet {
 				} else {
 					response.sendError(401);
 				}
-				JDBC.close();
+				JDBCl.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else if (cm.equals("logout")) {
+			break;
+
+		case "logout":
 			HttpSession httpsession = request.getSession();
 			httpsession.removeAttribute("isLogin");
 			httpsession.removeAttribute("uInfo");
 			httpsession.invalidate();
 			String root = request.getHeader("Host") + request.getContextPath();
 			response.sendRedirect("http://" + root + "/index.jsp");
-		} else if (cm.equals("regist")) {
+			break;
+
+		case "regist":
 			try {
 				String uName = request.getParameter("uName");
 				if (uName.trim().equals("")) {
 					out.println("不要修改网页代码\n请好好输入用户名");
 				} else {
-					String passwd = MD5Util.string2MD5(request.getParameter("passwd"));
+					String passwdr = MD5Util.string2MD5(request.getParameter("passwd"));
 					String passwd2 = MD5Util.string2MD5(request.getParameter("passwd2"));
 					String email = request.getParameter("email");
-					if (passwd.equals(passwd2)) {
+					if (passwdr.equals(passwd2)) {
 						if (getUser(uName).next()) {
 							out.print("已存在同名用户,请换一个用户名");
 						} else {
-							JDBCUtils JDBC = new JDBCUtils();
-							PreparedStatement ps = JDBC.getPST(
+							JDBCUtils JDBCr = new JDBCUtils();
+							PreparedStatement ps = JDBCr.getPST(
 									"INSERT INTO `n_blog`.`user` (`userName`, `passwd`, `email`) VALUES (?, ?, ?);");
 							ps.setString(1, uName);
-							ps.setString(2, passwd);
+							ps.setString(2, passwdr);
 							ps.setString(3, email);
-							int i = JDBC.getUpdate(ps);
+							int i = JDBCr.getUpdate(ps);
 							if (i != 1) {
 								out.println("出现严重错误\n请练习管理员检查数据库");
 							} else {
@@ -133,6 +139,7 @@ public class UserMGR extends HttpServlet {
 			} catch (Exception e) {
 				response.sendError(500);
 			}
+			break;
 		}
 	}
 
