@@ -9,6 +9,7 @@
 <html>
 <head>
 <title>在<%=Config.bName%>的博客注册</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>

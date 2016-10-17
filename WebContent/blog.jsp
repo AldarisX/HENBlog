@@ -11,6 +11,7 @@
 <html>
 <head>
 <title><%=Config.bName%></title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 <link rel="stylesheet" href="highlight/styles/default.css">

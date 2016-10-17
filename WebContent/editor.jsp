@@ -17,6 +17,7 @@
 <html>
 <head>
 <title><%=Config.bName%>的新博客</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 <style type="text/css">

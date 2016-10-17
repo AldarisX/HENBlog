@@ -11,6 +11,7 @@
 <html>
 <head>
 <title><%=Config.bName%>的后台</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="http://<%=root%>/css/page.css" />
 <link rel="stylesheet" href="http://<%=root%>/css/mian.css" />
 <link href="http://<%=root%>/res/mui/css/mui.min.css" rel="stylesheet" type="text/css" />

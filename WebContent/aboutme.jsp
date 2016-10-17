@@ -9,6 +9,7 @@
 <html>
 <head>
 <title>关于<%=Config.bName%></title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 </head>

@@ -8,6 +8,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 </head>

@@ -17,6 +17,7 @@
 <html>
 <head>
 <title><%=Config.bName%>的主页</title>
+<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 <link rel="stylesheet" href="highlight/styles/default.css">
