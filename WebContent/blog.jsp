@@ -38,15 +38,15 @@
 					if (!jQuery.isEmptyObject(data)) {
 						document.title = document.title + "  " + data.title;
 						$("#maintext").append("<h2>" + data.title+ "</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;"+ data.content + "</p>");
+						$('pre code').each(function(i, block) {
+							hljs.highlightBlock(block);
+						});
 					} else {
 						$("#mgr").css("display", "none");
 						$("#maintext").append("<p>找不到相关的内容</p>");
 					}
 				});
 		loadTalk();
-		$('pre code').each(function(i, block) {
-			hljs.highlightBlock(block);
-		});
 	});
 
 	function delSure() {
@@ -71,6 +71,9 @@
 				for(var x in talks){
 					$(".talks").append("<div><p>"+talks[x].content+"</p><p class='talkuName'>"+talks[x].uName+"</p></div><hr>")
 				}
+				$('pre code').each(function(i, block) {
+					hljs.highlightBlock(block);
+				});
 			}
 		});
 	}
