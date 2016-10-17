@@ -16,16 +16,16 @@ import model.User;
 import tool.Tool;
 
 /**
- * Servlet implementation class getBlog
+ * Servlet implementation class GetBlog
  */
-@WebServlet("/getBlog")
-public class getBlog extends HttpServlet {
+@WebServlet("/GetBlog")
+public class GetBlog extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public getBlog() {
+	public GetBlog() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

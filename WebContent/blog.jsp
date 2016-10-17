@@ -51,7 +51,7 @@
 	function delSure() {
 		var r = confirm("确定删除?");
 		if (r == true) {
-			$.post("getBlog", {
+			$.post("GetBlog", {
 				"cm" : "del",
 				"id" :<%=id%>,
 			}, function(result) {

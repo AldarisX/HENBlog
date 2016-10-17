@@ -21,16 +21,16 @@ import model.User;
 import tool.MD5Util;
 
 /**
- * Servlet implementation class getPIC
+ * Servlet implementation class GetPIC
  */
-@WebServlet("/getPIC")
-public class getPIC extends HttpServlet {
+@WebServlet("/GetPIC")
+public class GetPIC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public getPIC() {
+	public GetPIC() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -97,6 +97,8 @@ public class getPIC extends HttpServlet {
 								}
 								out.println("img/upload/" + destinationfileName);
 								System.out.println("用户图片保存到:" + pic.getAbsolutePath());
+							}else{
+								out.println("不支持的文件类型");
 							}
 						}
 					}
