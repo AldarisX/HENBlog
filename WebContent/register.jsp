@@ -8,8 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>在<%=Config.bName%>的博客注册
-</title>
+<title>在<%=Config.bName%>的博客注册</title>
 <link rel="stylesheet" href="css/page.css" />
 <link rel="stylesheet" href="css/mian.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
