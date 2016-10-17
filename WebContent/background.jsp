@@ -11,6 +11,6 @@
 <script src="http://<%=root%>/res/mui/js/mui.min.js"></script>
 </head>
 <body>
-<img class="bg" src="img/background.jpg" width="100%" />
+<img class="bg" src="http://<%=root%>/img/background.jpg" width="100%" />
 </body>
 </html>
