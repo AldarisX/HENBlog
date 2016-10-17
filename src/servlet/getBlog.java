@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.Config;
 
 import model.Content;
+import model.Talk;
+import model.User;
 import tool.Tool;
 
 /**
@@ -36,7 +38,7 @@ public class getBlog extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String cm = request.getParameter("cm");
-		
+
 		switch (cm) {
 		case "false":
 			String title = request.getParameter("title");
@@ -60,6 +62,13 @@ public class getBlog extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			new Content().delContent(id);
 			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + id + "-.json");
+			break;
+		case "addTalk":
+			int tid = Integer.parseInt(request.getParameter("tid"));
+			String uName = ((User)request.getSession().getAttribute("uInfo")).getUserName();
+			String content = request.getParameter("content");
+			new Talk().addTalk(tid, uName, content);
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "talkjson.jsptid-" + tid + "-.json");
 			break;
 		}
 	}
