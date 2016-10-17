@@ -57,6 +57,7 @@ public class getBlog extends HttpServlet {
 			new Content().updateContent(Integer.parseInt(request.getParameter("id")), request.getParameter("title"),
 					request.getParameter("pretitle"), request.getParameter("inner"));
 			Config.titleCount -= 1;
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson.jsp");
 			break;
 		case "del":
 			int id = Integer.parseInt(request.getParameter("id"));
