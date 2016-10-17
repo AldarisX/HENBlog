@@ -72,14 +72,6 @@ var index=1;
 			return unescape(r[2]);
 		return null;
 	}
-	
-	var sdelay=0;
-	function returnTop() {
-	 window.scrollBy(0,-80);//Only for y vertical-axis
-	 if(document.body.scrollTop>0) { 
-	  sdelay= setTimeout('returnTop()',15);
-	 }
-	}
 </script>
 </head>
 <body>
