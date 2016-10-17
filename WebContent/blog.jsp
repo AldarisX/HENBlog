@@ -78,7 +78,7 @@
 	function talk_Sure(){
 		var content=CKEDITOR.instances.talkCK.getData();
 		if(content.trim!=""){
-			$.post("getBlog", {
+			$.post("GetBlog", {
 				"cm" : "addTalk",
 				"tid" : GetQueryString("tid"),
 				"content" : CKEDITOR.instances.talkCK.getData()

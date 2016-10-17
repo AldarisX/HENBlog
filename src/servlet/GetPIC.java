@@ -96,7 +96,6 @@ public class GetPIC extends HttpServlet {
 									file.write(pic);
 								}
 								out.println("img/upload/" + destinationfileName);
-								System.out.println("用户图片保存到:" + pic.getAbsolutePath());
 							}else{
 								out.println("不支持的文件类型");
 							}
