@@ -85,6 +85,7 @@ public class OnStartUP extends HttpServlet {
 			Config.job = readOption("Job");
 			Config.loc = readOption("Loc");
 			Config.desc = readOption("desc");
+			Config.background = readOption("background");
 
 			JDBCUtils JDBC = new JDBCUtils();
 			ResultSet rs = JDBC.getQuery("select * from head order by sindex");
@@ -104,6 +105,10 @@ public class OnStartUP extends HttpServlet {
 			JDBC.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("严重错误");
+			System.out.println("严重错误");
+			System.out.println("严重错误");
+			System.exit(1);
 		}
 	}
 

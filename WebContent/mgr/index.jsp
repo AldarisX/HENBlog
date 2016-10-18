@@ -23,6 +23,10 @@ p{
 .main {
 	margin-top: 2%;
 }
+
+.in_BG{
+	margin-top:1%;
+}
 </style>
 <script type="text/javascript" src="http://<%=root%>/js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -32,6 +36,24 @@ function cleanVmsp(){
 	}, function(result) {
 		location.reload(false);
 	}).error(function(){alert("提交失败");});
+}
+
+function in_BG_Change(files){
+	var file  = files[0];
+	var reader = new FileReader();
+	reader.onloadend = function () {
+		$(".preBG").attr("src",reader.result);
+		$(".bg").attr("src",reader.result);
+	}
+	if (file) {
+		reader.readAsDataURL(file);
+	} else {
+	  preview.src = "";
+	}
+}
+
+function bgConfig_Sure(){
+	$(".config_BG").submit();
 }
 </script>
 <script src="http://<%=root%>/res/mui/js/mui.min.js"></script>
@@ -44,9 +66,16 @@ function cleanVmsp(){
 			<div class="vmsp">
 				<p>JSON缓存已经使用<%=Tool.FormetFileSize(Tool.getFileSize(new File(Config.warLoc + "/vmsp/")))%>&nbsp;&nbsp;<a href="javascript:cleanVmsp();">清空</a></p>
 			</div>
-			<hr>
 			<div class="config">
-				<form method="post" onsubmit="return config_Sure();">
+				<hr>
+				<form class="config_BG" action="../AdminMGR?cm=getIMG" method="post" enctype="multipart/form-data" onsubmit="return bgConfig_Sure();">
+					<legend>背景设定</legend>
+					<img src="http://<%=root%>/<%=Config.background%>" class="preBG" width="100%" />
+					<input type="file" name="in_BG" class="in_BG" onchange="in_BG_Change(this.files)"/><br>
+					<button type="submit" class="mui-btn mui-btn--raised">确定</button>
+				</form>
+				<hr>
+				<form method="post" onsubmit="return bConfig_Sure();">
 					<legend>博主信息设定</legend>
 					<div class="mui-textfield mui-textfield--float-label">
     					<input class="bName" type="text" name="bName" value="<%=Config.bName%>" required="required">
@@ -69,6 +98,18 @@ function cleanVmsp(){
       						%>
     					</select>
     					<label>选择一个性别</label>
+  					</div>
+  					<div class="mui-textfield mui-textfield--float-label">
+    					<input class="bName" type="text" name="bName" value="<%=Config.birthday%>" required="required">
+    					<label>生日</label>
+  					</div>
+  					<div class="mui-textfield mui-textfield--float-label">
+    					<input class="bName" type="text" name="bName" value="<%=Config.job%>" required="required">
+    					<label>职业</label>
+  					</div>
+  					<div class="mui-textfield mui-textfield--float-label">
+    					<input class="bName" type="text" name="bName" value="<%=Config.loc%>" required="required">
+    					<label>现居地</label>
   					</div>
   					<div class="mui-textfield mui-textfield--float-label">
     					<input class="desc" type="text" name="desc" value="<%=Config.desc%>" required="required">

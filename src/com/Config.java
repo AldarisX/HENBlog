@@ -11,6 +11,8 @@ public class Config {
 	public static String job = "";
 	public static String loc = "";
 	public static String desc = "";
+	// 背景
+	public static String background = "";
 	// 主页等记录条数
 	public static int logCount = 15;
 	public static ArrayList<String> headName = new ArrayList<String>();
