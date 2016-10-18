@@ -2471,10 +2471,6 @@ th {
   }
 }
 
-body.mui-body--scroll-lock {
-  overflow: hidden !important;
-}
-
 /**
  * MUI Overlay module
  */
