@@ -101,6 +101,7 @@ public class AdminMGR extends HttpServlet {
 									} else {
 										response.sendRedirect("index.jsp");
 									}
+									JDBC.close();
 								} else {
 									out.println("不支持的文件类型");
 								}
