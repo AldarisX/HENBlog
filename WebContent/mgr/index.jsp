@@ -52,8 +52,14 @@ function in_BG_Change(files){
 	}
 }
 
-function bgConfig_Sure(){
+function bbgConfig_Sure(){
 	$(".config_BG").submit();
+	return false;
+}
+
+function bConfig_Sure(){
+	$(".config_B").submit();
+	return false;
 }
 </script>
 <script src="http://<%=root%>/res/mui/js/mui.min.js"></script>
@@ -68,21 +74,21 @@ function bgConfig_Sure(){
 			</div>
 			<div class="config">
 				<hr>
-				<form class="config_BG" action="../AdminMGR?cm=getIMG" method="post" enctype="multipart/form-data" onsubmit="return bgConfig_Sure();">
+				<form class="config_BG" action="../AdminMGR?cm=getIMG" method="post" enctype="multipart/form-data" onsubmit="return bbgConfig_Sure();">
 					<legend>背景设定</legend>
 					<img src="http://<%=root%>/<%=Config.background%>" class="preBG" width="100%" />
 					<input type="file" name="in_BG" class="in_BG" onchange="in_BG_Change(this.files)"/><br>
 					<button type="submit" class="mui-btn mui-btn--raised">确定</button>
 				</form>
 				<hr>
-				<form method="post" onsubmit="return bConfig_Sure();">
+				<form class="config_B" action="../AdminMGR?cm=getBConfig" method="post" onsubmit="return bConfig_Sure();">
 					<legend>博主信息设定</legend>
 					<div class="mui-textfield mui-textfield--float-label">
     					<input class="bName" type="text" name="bName" value="<%=Config.bName%>" required="required">
     					<label>名字</label>
   					</div>
   					<div class="mui-select">
-    					<select required="required">
+    					<select name="bSex" required="required">
     						<%
     							if(Config.sex.equals("男")){
     						%>
@@ -100,15 +106,15 @@ function bgConfig_Sure(){
     					<label>选择一个性别</label>
   					</div>
   					<div class="mui-textfield mui-textfield--float-label">
-    					<input class="bName" type="text" name="bName" value="<%=Config.birthday%>" required="required">
+    					<input class="bBirthday" type="text" name="bBirthday" value="<%=Config.birthday%>" required="required">
     					<label>生日</label>
   					</div>
   					<div class="mui-textfield mui-textfield--float-label">
-    					<input class="bName" type="text" name="bName" value="<%=Config.job%>" required="required">
-    					<label>职业</label>
+    					<input class="bJob" type="text" name="bJob" value="<%=Config.job%>" required="required">
+    					<label>工作</label>
   					</div>
   					<div class="mui-textfield mui-textfield--float-label">
-    					<input class="bName" type="text" name="bName" value="<%=Config.loc%>" required="required">
+    					<input class="bLoc" type="text" name="bLoc" value="<%=Config.loc%>" required="required">
     					<label>现居地</label>
   					</div>
   					<div class="mui-textfield mui-textfield--float-label">

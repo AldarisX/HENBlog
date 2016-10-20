@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -92,21 +92,39 @@ public class AdminMGR extends HttpServlet {
 										file.write(pic);
 									}
 									Config.background = "img/upload/" + destinationfileName;
-									JDBCUtils JDBC = new JDBCUtils();
-									PreparedStatement ps = JDBC.getPST(
-											"UPDATE `n_blog`.`option` SET `value`=? WHERE `type`='background';");
-									ps.setString(1, Config.background);
-									if (JDBC.getUpdate(ps) != 1) {
-										out.print("检测到异常,请检查数据库时候完整");
+									if (updateOption("background", Config.background) != 1) {
+										out.print("检测到异常,请检查数据库完整性");
 									} else {
 										response.sendRedirect("index.jsp");
 									}
-									JDBC.close();
 								} else {
 									out.println("不支持的文件类型");
 								}
 							}
 						}
+					}
+					break;
+				case "getBConfig":
+					String bName = request.getParameter("bName");
+					Config.bName = bName;
+					String bSex = request.getParameter("bSex");
+					Config.sex = bSex;
+					String bBirthday = request.getParameter("bBirthday");
+					Config.birthday = bBirthday;
+					String bJob = request.getParameter("bJob");
+					Config.job = bJob;
+					String bLoc = request.getParameter("bLoc");
+					Config.loc = bLoc;
+					String desc = request.getParameter("desc");
+					Config.desc = desc;
+
+					int irows = updateOption("bname", bName) + updateOption("sex", bSex)
+							+ updateOption("birthday", bBirthday) + updateOption("Job", bJob)
+							+ updateOption("Loc", bLoc) + updateOption("desc", desc);
+					if (irows != 6) {
+						out.print("检测到异常,请检查数据库完整性");
+					} else {
+						response.sendRedirect("index.jsp");
 					}
 					break;
 				}
@@ -126,6 +144,22 @@ public class AdminMGR extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	protected int updateOption(String name, String val) {
+		int irows = 0;
+		try {
+			JDBCUtils JDBC = new JDBCUtils();
+			PreparedStatement ps;
+			ps = JDBC.getPST("UPDATE `n_blog`.`option` SET `value`=? WHERE `type`=?;");
+			ps.setString(1, val);
+			ps.setString(2, name);
+			irows = JDBC.getUpdate(ps);
+			JDBC.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return irows;
 	}
 
 }
