@@ -214,17 +214,6 @@ h1, h2, h3, h4, h5, h6, ul, li {
 	font-size: 13px;
 }
 
-.z_top a {
-	color: #222;
-}
-
-a {
-	outline: 0;
-	color: #00a1d6;
-	text-decoration: none;
-	cursor: pointer;
-}
-
 .uns_box li.u-i a.i-link {
 	display: block;
 	color: #222;
@@ -234,10 +223,6 @@ a {
 	padding: 0 15px;
 	transition: .15s background-color;
 	font-size: 13px;
-}
-
-.z_top a {
-	color: #222;
 }
 
 #i_menu_profile {
@@ -313,10 +298,6 @@ strong, b {
 	background-position: -78px -154px;
 }
 
-.z_top a {
-	color: #222;
-}
-
 .user-info-level {
 	margin-left: 5px;
 	margin-right: 5px;
@@ -325,10 +306,6 @@ strong, b {
 	display: inline-block;
 	background-image:
 		url(http://static.hdslb.com/images/v3images/Level-icons.png);
-}
-
-.z_top a {
-	color: #222;
 }
 
 #i_menu_profile .info .coin {
@@ -420,10 +397,6 @@ strong, b {
 	height: 18px;
 	background-image: url(/images/base/icons.png);
 	background-repeat: no-repeat;
-}
-
-.z_top a {
-	color: #222;
 }
 
 #i_menu_profile .info .email.verified {
