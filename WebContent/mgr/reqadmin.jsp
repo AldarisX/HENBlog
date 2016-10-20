@@ -5,7 +5,7 @@
 	try {
 		if ((boolean) session.getAttribute("isLogin")) {
 			User u = (User) session.getAttribute("uInfo");
-			if (u.getLevel() >= 2) {
+			if (u.getLevel() > 2) {
 				response.sendError(404);
 			}
 		} else {
