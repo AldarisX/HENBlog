@@ -96,7 +96,7 @@ var id=0;
 					<input type="text" name="title" class="title" required="required"> <label class="h2">这里写标题</label>
 				</div>
 				<div>
-					<label class="h2">这里写摘要</label>
+					<label class="h2">这里写摘要<br>摘要写点关键信息,这样可以给搜索提供依据</label>
 					<textarea id="pretitle" class="ckeditor" required="required"></textarea>
 				</div>
 				<br>
