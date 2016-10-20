@@ -1,6 +1,9 @@
 * {
 	margin: 0px;
 	padding: 0px;
+}
+
+a,.tblock{
 	transition: .2s all linear;
 }
 
@@ -25,15 +28,3 @@ p {
 	font-family: Arial;
 	color: #494949;
 }
-
-/* .support{ */
-/* 	float:right; */
-/* 	z-index:-20; */
-/* } */
-
-/* .support a{ */
-/* 	font-family:Arial; */
-/* 	color:#d3d3d3; */
-/* 	text-shadow:4px 4px 3px #000; */
-/* 	text-decoration:none; */
-/* } */
