@@ -1,9 +1,15 @@
 <%@page import="com.Config"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="UserAlert.jsp"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	
+	String prePage = request.getHeader("Referer");
+	if(prePage == null){
+		prePage="http://"+root+"/";
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,8 +30,8 @@
 					"email":$(".email").val()
 				}, function(result) {
 					alert(result);
-					window.location.href = "index.jsp";
-				}) .error(function(){alert("登陆失败,请检查账号或者密码");});
+					window.location.href = "<%=prePage%>";
+				}) .error(function(){alert("注册失败,请检查账号或者密码");});
 			} else {
 				alert("两次输入的密码不匹配");
 			}
@@ -35,7 +41,6 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"></jsp:include>
-	<%@ include file="UserAlert.jsp"%>
 	<div class="page" align="center">
 		<jsp:include page="head.jsp"></jsp:include>
 
