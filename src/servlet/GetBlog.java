@@ -49,20 +49,22 @@ public class GetBlog extends HttpServlet {
 			} else {
 				new Content().addContent(Config.bName, title, pretitle, inner);
 				Config.titleCount += 1;
-				Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson.jsp");
+				Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson");
 			}
 			break;
 
 		case "true":
-			new Content().updateContent(Integer.parseInt(request.getParameter("id")), request.getParameter("title"),
+			int id = Integer.parseInt(request.getParameter("id"));
+			new Content().updateContent(id, request.getParameter("title"),
 					request.getParameter("pretitle"), request.getParameter("inner"));
 			Config.titleCount -= 1;
-			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson.jsp");
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson");
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + id + "-.json");
 			break;
 		case "del":
-			int id = Integer.parseInt(request.getParameter("id"));
-			new Content().delContent(id);
-			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + id + "-.json");
+			int idd = Integer.parseInt(request.getParameter("id"));
+			new Content().delContent(idd);
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + idd + "-.json");
 			break;
 		case "addTalk":
 			int tid = Integer.parseInt(request.getParameter("tid"));
