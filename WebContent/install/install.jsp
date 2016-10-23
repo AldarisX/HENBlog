@@ -27,9 +27,9 @@
 
 			GetInstall.jspIndex(true);
 
-			new OnStartUP().init(this);
-
 			JDBCUtils.saveDBConfig();
+			
+			new OnStartUP().init(this);
 		}
 	} catch (Exception e) {
 		down = true;
