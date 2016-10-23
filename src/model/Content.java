@@ -3,14 +3,10 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashMap;
 
 import com.JDBCUtils;
-import com.mysql.fabric.HashShardMapping;
-import com.sun.org.apache.regexp.internal.recompile;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class Content {

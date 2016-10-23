@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.Config;
 import com.JDBCUtils;
 
 import net.sf.json.JSONArray;
