@@ -117,10 +117,12 @@ public class UserMGR extends HttpServlet {
 							out.print("已存在同名用户,请换一个用户名");
 						} else {
 							int i = new User(uName, passwd2, email).addUser();
-							if (i != 1) {
+							if (i > 1 || i < 0) {
 								out.println("出现严重错误\n请练习管理员检查数据库");
-							} else {
+							} else if (i == 1) {
 								out.println("注册成功");
+							} else {
+								out.println("存在同名用户");
 							}
 						}
 					} else {

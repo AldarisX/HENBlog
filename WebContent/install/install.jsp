@@ -16,7 +16,8 @@
 		String uName = request.getParameter("user");
 		String uPasswd = MD5Util.string2MD5(request.getParameter("passwd"));
 		User u = new User(uName, uPasswd);
-		if (u.addUser(1) != 1) {
+		int i = u.addUser(1);
+		if (i > 1 || i<0) {
 			down = true;
 		} else {
 			u.setLevel(1);
