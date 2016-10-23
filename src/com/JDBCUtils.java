@@ -67,7 +67,7 @@ public class JDBCUtils {
 			runner.setLogWriter(null);
 
 			BufferedReader br = new BufferedReader(
-					new InputStreamReader(new FileInputStream(new File(Config.warLoc + "WEB-INF/classes/backup.sql")),"UTF-8"));
+					new InputStreamReader(new FileInputStream(new File(Config.warLoc + "WEB-INF/classes/backup-init.sql")),"UTF-8"));
 			runner.runScript(br);
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException
 				| IOException e) {
