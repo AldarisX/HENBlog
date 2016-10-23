@@ -3,6 +3,7 @@ package com;
 import java.util.ArrayList;
 
 public class Config {
+	public static boolean isInstall = true;
 	public static String warLoc = "";
 	// 博客的设置
 	public static String bName = "";
@@ -12,7 +13,7 @@ public class Config {
 	public static String loc = "";
 	public static String desc = "";
 	// 背景
-	public static String background = "";
+	public static String background = "img/background.jpg";
 	// 主页等记录条数
 	public static int logCount = 15;
 	public static ArrayList<String> headName = new ArrayList<String>();

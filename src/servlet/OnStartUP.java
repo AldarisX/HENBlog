@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import com.Config;
 import com.JDBCUtils;
 
+import model.GetInstall;
 import net.sf.json.JSONObject;
 import tool.Tool;
 
@@ -103,13 +104,16 @@ public class OnStartUP extends HttpServlet {
 			Config.titleCount = rs.getInt("TABLE_ROWS");
 
 			JDBC.close();
+			Config.isInstall = true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("严重错误");
-			System.out.println("严重错误");
-			System.out.println("严重错误");
-			System.exit(1);
+			Config.isInstall = false;
+			GetInstall.jspIndex(false);
 		}
+	}
+	
+	public void initx(){
+		
 	}
 
 	public String readOption(String type) {

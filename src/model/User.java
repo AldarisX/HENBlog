@@ -66,4 +66,15 @@ public class User {
 		ps.setString(3, email);
 		return JDBC.getUpdate(ps);
 	}
+
+	public int addUser(int level) throws SQLException {
+		JDBCUtils JDBC = new JDBCUtils();
+		PreparedStatement ps = JDBC
+				.getPST("INSERT INTO `n_blog`.`user` (`userName`, `passwd`, `email`, `level`) VALUES (?, ?, ?, ?);");
+		ps.setString(1, userName);
+		ps.setString(2, passwd);
+		ps.setString(3, email);
+		ps.setInt(4, level);
+		return JDBC.getUpdate(ps);
+	}
 }

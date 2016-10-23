@@ -87,7 +87,6 @@ public class UserMGR extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("uInfo", u);
 					session.setAttribute("isLogin", true);
-					out.println("succ");
 				} else {
 					response.sendError(401);
 				}
