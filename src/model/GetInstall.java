@@ -86,6 +86,9 @@ public class GetInstall {
 			case 1049:
 				dbExState = "提示:即将创建数据库";
 				break;
+			case 1044:
+				dbExState = "错误:用户权限不足";
+				break;
 			default:
 				dbExState = "未知错误:" + e.getErrorCode();
 				isDBEx = 2;
