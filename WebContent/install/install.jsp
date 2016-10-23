@@ -5,6 +5,7 @@
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="reqadmin.jsp"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -17,7 +18,7 @@
 		String uPasswd = MD5Util.string2MD5(request.getParameter("passwd"));
 		User u = new User(uName, uPasswd);
 		int i = u.addUser(1);
-		if (i > 1 || i<0) {
+		if (i > 1 || i < 0) {
 			down = true;
 		} else {
 			u.setLevel(1);
@@ -25,9 +26,9 @@
 			session.setAttribute("isLogin", true);
 
 			GetInstall.jspIndex(true);
-			
+
 			new OnStartUP().init(this);
-			
+
 			JDBCUtils.saveDBConfig();
 		}
 	} catch (Exception e) {
