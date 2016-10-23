@@ -6,7 +6,7 @@
 	response.setCharacterEncoding("UTF-8");
 %>
 <head>
-<link rel="stylesheet" href="css/navside.css" />
+<link rel="stylesheet" href="http://<%=request.getHeader("Host") + request.getContextPath()%>/css/navside.css" />
 </head>
 
 <div class="navside" align="center">
