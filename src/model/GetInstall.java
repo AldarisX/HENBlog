@@ -1,18 +1,11 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.Config;
 import com.JDBCUtils;
-import com.ibatis.common.jdbc.ScriptRunner;
 
 import tool.Tool;
 
