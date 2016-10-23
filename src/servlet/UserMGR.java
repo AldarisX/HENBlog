@@ -96,7 +96,6 @@ public class UserMGR extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-
 		case "logout":
 			HttpSession httpsession = request.getSession();
 			httpsession.removeAttribute("isLogin");
@@ -105,7 +104,6 @@ public class UserMGR extends HttpServlet {
 			String root = request.getHeader("Host") + request.getContextPath();
 			response.sendRedirect("http://" + root + "/index.jsp");
 			break;
-
 		case "regist":
 			try {
 				String uName = request.getParameter("uName");
@@ -119,13 +117,7 @@ public class UserMGR extends HttpServlet {
 						if (getUser(uName).next()) {
 							out.print("已存在同名用户,请换一个用户名");
 						} else {
-							JDBCUtils JDBCr = new JDBCUtils();
-							PreparedStatement ps = JDBCr.getPST(
-									"INSERT INTO `n_blog`.`user` (`userName`, `passwd`, `email`) VALUES (?, ?, ?);");
-							ps.setString(1, uName);
-							ps.setString(2, passwdr);
-							ps.setString(3, email);
-							int i = JDBCr.getUpdate(ps);
+							int i = new User(uName, passwd2, email).addUser();
 							if (i != 1) {
 								out.println("出现严重错误\n请练习管理员检查数据库");
 							} else {
