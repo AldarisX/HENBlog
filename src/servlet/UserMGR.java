@@ -121,13 +121,13 @@ public class UserMGR extends HttpServlet {
 							if (i > 1 || i < 0) {
 								out.println("出现严重错误\n请练习管理员检查数据库");
 							} else if (i == 1) {
+								HttpSession session = request.getSession();
+								session.setAttribute("uInfo", u);
+								session.setAttribute("isLogin", true);
 								out.println("注册成功");
 							} else {
 								out.println("存在同名用户");
 							}
-							HttpSession session = request.getSession();
-							session.setAttribute("uInfo", u);
-							session.setAttribute("isLogin", true);
 						}
 					} else {
 						out.println("不要修改网页代码\n两次密码不一致");
