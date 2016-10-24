@@ -67,7 +67,7 @@ public class AdminMGR extends HttpServlet {
 						return;
 					}
 					List<FileItem> list = upload.parseRequest(request);
-					Iterator i = list.iterator();
+					Iterator<FileItem> i = list.iterator();
 					for (FileItem item : list) {
 						if (!item.isFormField()) {
 							while (i.hasNext()) {
