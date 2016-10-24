@@ -75,11 +75,11 @@ public class OnStartUP extends HttpServlet {
 		JDBCUtils.user = dbOBJ.getString("user");
 		JDBCUtils.passwd = dbOBJ.getString("passwd");
 
-		System.out.println("清空缓存");
-		Tool.dirClean(new File(Config.warLoc + "/vmsp/"), true);
-
-		System.out.println("设置博客属性");
 		try {
+			System.out.println("清空缓存");
+			Tool.dirClean(new File(Config.warLoc + "/vmsp/"), true);
+
+			System.out.println("设置博客属性");
 			Config.bName = readOption("bname");
 			Config.sex = readOption("sex");
 			Config.birthday = readOption("birthday");
@@ -103,31 +103,34 @@ public class OnStartUP extends HttpServlet {
 			rs.next();
 			Config.titleCount = rs.getInt("TABLE_ROWS");
 
+			System.out.println("加载允许的图片类型");
+			JDBC=new JDBCUtils();
+			ps = JDBC.getPST("select name from imagetype");
+			rs = JDBC.getQuery(ps);
+			while (rs.next()) {
+				Tool.imgTypeList.add(rs.getString("name"));
+			}
+
 			JDBC.close();
 			Config.isInstall = true;
+			System.out.println("加载完成");
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("发现没有安装,即将进入安装");
 			Config.isInstall = false;
 			GetInstall.jspIndex(false);
 		}
 	}
-	
-	public void initx(){
-		
+
+	public void initx() {
+
 	}
 
-	public String readOption(String type) {
-		JDBCUtils JDBC = null;
-		try {
-			JDBC = new JDBCUtils();
-			ResultSet rs = JDBC.getQuery("select * from `option` where type='" + type + "';");
-			rs.next();
-			return rs.getString("value");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		JDBC.close();
-		return "";
+	public String readOption(String type) throws SQLException {
+		JDBCUtils JDBC = new JDBCUtils();
+		ResultSet rs = JDBC.getQuery("select * from `option` where type='" + type + "';");
+		rs.next();
+		return rs.getString("value");
 	}
 
 }

@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import model.User;
 import tool.MD5Util;
+import tool.Tool;
 
 /**
  * Servlet implementation class GetPIC
@@ -63,7 +64,6 @@ public class GetPIC extends HttpServlet {
 			HttpSession session = request.getSession();
 			User u = (User) session.getAttribute("uInfo");
 			if (u.getLevel() < 2) {
-
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				upload.setHeaderEncoding("UTF-8");
@@ -77,27 +77,21 @@ public class GetPIC extends HttpServlet {
 						while (i.hasNext()) {
 							FileItem file = (FileItem) i.next();
 							String sourcefileName = file.getName();
-							if (sourcefileName != null
-									&& (sourcefileName.endsWith(".jpg") || sourcefileName.endsWith(".png")
-											|| sourcefileName.endsWith(".gif") || sourcefileName.endsWith(".webp"))) {
-								String destinationfileName = null;
-								String id = MD5Util.getMD5(file.getInputStream());
-								if (sourcefileName.endsWith(".jpg")) {
-									destinationfileName = id + ".jpg";
-								} else if (sourcefileName.endsWith(".gif")) {
-									destinationfileName = id + ".gif";
-								} else if (sourcefileName.endsWith(".png")) {
-									destinationfileName = id + ".png";
-								} else if (sourcefileName.endsWith(".webp")) {
-									destinationfileName = id + ".webp";
+							if (sourcefileName != null) {
+								String fileType = Tool.getFileType(sourcefileName);
+								if (Tool.isIMG(fileType)) {
+									String destinationfileName = null;
+									String id = MD5Util.getMD5(file.getInputStream());
+									destinationfileName = id + fileType;
+
+									File pic = new File(uploadPath + destinationfileName);
+									if (!pic.exists()) {
+										file.write(pic);
+									}
+									out.println("img/upload/" + destinationfileName);
+								} else {
+									out.println("不支持的文件类型");
 								}
-								File pic = new File(uploadPath + destinationfileName);
-								if (!pic.exists()) {
-									file.write(pic);
-								}
-								out.println("img/upload/" + destinationfileName);
-							}else{
-								out.println("不支持的文件类型");
 							}
 						}
 					}

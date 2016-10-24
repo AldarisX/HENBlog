@@ -73,32 +73,26 @@ public class AdminMGR extends HttpServlet {
 							while (i.hasNext()) {
 								FileItem file = (FileItem) i.next();
 								String sourcefileName = file.getName();
-								if (sourcefileName != null && (sourcefileName.endsWith(".jpg")
-										|| sourcefileName.endsWith(".png") || sourcefileName.endsWith(".gif")
-										|| sourcefileName.endsWith(".webp"))) {
-									String destinationfileName = null;
-									String id = MD5Util.getMD5(file.getInputStream());
-									if (sourcefileName.endsWith(".jpg")) {
-										destinationfileName = id + ".jpg";
-									} else if (sourcefileName.endsWith(".gif")) {
-										destinationfileName = id + ".gif";
-									} else if (sourcefileName.endsWith(".png")) {
-										destinationfileName = id + ".png";
-									} else if (sourcefileName.endsWith(".webp")) {
-										destinationfileName = id + ".webp";
-									}
-									File pic = new File(uploadPath + destinationfileName);
-									if (!pic.exists()) {
-										file.write(pic);
-									}
-									Config.background = "img/upload/" + destinationfileName;
-									if (updateOption("background", Config.background) != 1) {
-										out.print("检测到异常,请检查数据库完整性");
+								System.out.println(file);
+								if (sourcefileName != null) {
+									String fileType = Tool.getFileType(sourcefileName);
+									if (Tool.isIMG(fileType)) {
+										String destinationfileName = null;
+										String id = MD5Util.getMD5(file.getInputStream());
+										destinationfileName = id + fileType;
+										File pic = new File(uploadPath + destinationfileName);
+										if (!pic.exists()) {
+											file.write(pic);
+										}
+										Config.background = "img/upload/" + destinationfileName;
+										if (updateOption("background", Config.background) != 1) {
+											out.print("检测到异常,请检查数据库完整性");
+										} else {
+											response.sendRedirect("index.jsp");
+										}
 									} else {
-										response.sendRedirect("index.jsp");
+										out.println("不支持的文件类型");
 									}
-								} else {
-									out.println("不支持的文件类型");
 								}
 							}
 						}

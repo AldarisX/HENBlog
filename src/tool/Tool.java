@@ -3,6 +3,7 @@ package tool;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -16,7 +17,9 @@ public class Tool {
 	private static AtomicLong pendingFileVisits = new AtomicLong();
 	private static CountDownLatch latch = new CountDownLatch(1);
 	private static AtomicLong totalSize = new AtomicLong();
-	
+
+	public static ArrayList<String> imgTypeList = new ArrayList<String>();
+
 	public static String transMapToString(Map<String, String[]> map) {
 		String mapToString = "";
 		for (String key : map.keySet()) {
@@ -26,6 +29,14 @@ public class Tool {
 			}
 		}
 		return mapToString;
+	}
+
+	public static String getFileType(String name) {
+		return name.substring(name.lastIndexOf(".") + 1);
+	}
+
+	public static boolean isIMG(String type) {
+		return imgTypeList.contains(type);
 	}
 
 	public static long getFileSize(File file) throws InterruptedException {
@@ -42,7 +53,7 @@ public class Tool {
 			service.shutdown();
 		}
 	}
-	
+
 	private static void updateTotalSizeOfFilesInDir(final File file) {
 		long fileSize = 0;
 		if (file.isFile())
@@ -68,7 +79,7 @@ public class Tool {
 		if (pendingFileVisits.decrementAndGet() == 0)
 			latch.countDown();
 	}
-	
+
 	public static String FormetFileSize(long fileS) {
 		DecimalFormat df = new DecimalFormat("#.00");
 		String fileSizeString = "";
@@ -85,7 +96,7 @@ public class Tool {
 		}
 		return fileSizeString;
 	}
-	
+
 	public static boolean isFileExist(File file, long time) throws IOException {
 		if (file.exists()) {
 			Date date = new Date();
