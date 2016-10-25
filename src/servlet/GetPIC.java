@@ -62,8 +62,8 @@ public class GetPIC extends HttpServlet {
 			String sRoot = request.getSession().getServletContext().getRealPath("/");
 			String uploadPath = sRoot + "img/upload/";
 			HttpSession session = request.getSession();
-			User u = (User) session.getAttribute("uInfo");
-			if (u.getLevel() < 2) {
+			boolean isLogin = (boolean) session.getAttribute("isLogin");
+			if (isLogin) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				upload.setHeaderEncoding("UTF-8");
