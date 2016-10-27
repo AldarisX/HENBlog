@@ -73,7 +73,6 @@ public class AdminMGR extends HttpServlet {
 							while (i.hasNext()) {
 								FileItem file = (FileItem) i.next();
 								String sourcefileName = file.getName();
-								System.out.println(file);
 								if (sourcefileName != null) {
 									String fileType = Tool.getFileType(sourcefileName);
 									if (Tool.isIMG(fileType)) {
