@@ -45,10 +45,18 @@ public class OnStartUP extends HttpServlet {
 		System.out.println("获取项目路径");
 		try {
 			Config.warLoc = (config.getServletContext().getResource("/")).toString();
-			Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:/", ""), "utf-8");
+			String osName=System.getProperty("os.name");
+			switch (osName) {
+			case "Linux":
+				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:", ""), "utf-8");
+				break;
+			case "windows":
+				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:/", ""), "utf-8");
+				break;
+			}
 			System.out.println("获取项目路径成功");
 		} catch (MalformedURLException | UnsupportedEncodingException e) {
-			System.out.println("获取项目路径失败");
+			System.err.println("获取项目路径失败");
 			e.printStackTrace();
 		}
 
@@ -62,7 +70,8 @@ public class OnStartUP extends HttpServlet {
 				jsonBuffer.append(scanner.nextLine());
 			}
 		} catch (FileNotFoundException e) {
-
+			e.printStackTrace();
+			System.err.println("找不到数据库配置文件!!!");
 		} finally {
 			if (scanner != null) {
 				scanner.close();
@@ -116,7 +125,7 @@ public class OnStartUP extends HttpServlet {
 			System.out.println("加载完成");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("发现没有安装,即将进入安装");
+			System.err.println("发现没有安装,即将进入安装");
 			Config.isInstall = false;
 			GetInstall.jspIndex(false);
 		}
