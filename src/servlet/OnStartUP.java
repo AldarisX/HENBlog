@@ -123,6 +123,7 @@ public class OnStartUP extends HttpServlet {
 			JDBC.close();
 			Config.isInstall = true;
 			System.out.println("加载完成");
+			GetInstall.jspIndex(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("发现没有安装,即将进入安装");
