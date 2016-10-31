@@ -39,21 +39,33 @@ function cleanVmsp(){
 }
 
 function in_BG_Change(files){
+	var aeFileType=[<%=Tool.imgJSUL%>];
 	var file  = files[0];
-	var reader = new FileReader();
-	reader.onloadend = function () {
-		$(".preBG").attr("src",reader.result);
-		$(".bg").attr("src",reader.result);
-	}
-	if (file) {
-		reader.readAsDataURL(file);
-	} else {
-	  preview.src = "";
+	var fileType = $(".in_BG").val().substring($(".in_BG").val().lastIndexOf('.')+1).toLowerCase();
+	if(aeFileType.indexOf(fileType)!=-1){
+		var reader = new FileReader();
+		
+		reader.onloadend = function () {
+			$(".preBG").attr("src",reader.result);
+			$(".bg").attr("src",reader.result);
+		}
+		if (file) {
+			reader.readAsDataURL(file);
+		} else {
+		  preview.src = "";
+		}
+	}else{
+		alert("文件类型不被支持");
+		location.reload(true);
 	}
 }
 
 function bbgConfig_Sure(){
-	$(".config_BG").submit();
+	if($(".in_BG").val()!=""){
+		$(".config_BG").submit();
+	}else{
+		alert("请选择文件");
+	}
 	return false;
 }
 
@@ -77,7 +89,7 @@ function bConfig_Sure(){
 				<form class="config_BG" action="../AdminMGR?cm=getIMG" method="post" enctype="multipart/form-data" onsubmit="return bbgConfig_Sure();">
 					<legend>背景设定</legend>
 					<img src="http://<%=root%>/<%=Config.background%>" class="preBG" width="100%" />
-					<input type="file" name="in_BG" class="in_BG" onchange="in_BG_Change(this.files)"/><br>
+					<input type="file" name="in_BG" class="in_BG" accept="<%=Tool.imgUL%>" onchange="in_BG_Change(this.files)"/><br>
 					<button type="submit" class="mui-btn mui-btn--raised">确定</button>
 				</form>
 				<hr>

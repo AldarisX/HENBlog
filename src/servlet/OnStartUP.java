@@ -119,12 +119,14 @@ public class OnStartUP extends HttpServlet {
 			while (rs.next()) {
 				Tool.imgTypeList.add(rs.getString("name"));
 			}
-
 			JDBC.close();
+			Tool.cacImgUL();
+			System.out.println(Tool.imgUL);
+			
 			Config.isInstall = true;
 			System.out.println("加载完成");
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			System.err.println("发现没有安装,即将进入安装");
 			Config.isInstall = false;
 		}

@@ -78,7 +78,7 @@ public class AdminMGR extends HttpServlet {
 									if (Tool.isIMG(fileType)) {
 										String destinationfileName = null;
 										String id = MD5Util.getMD5(file.getInputStream());
-										destinationfileName = id + fileType;
+										destinationfileName = id + "." + fileType;
 										File pic = new File(uploadPath + destinationfileName);
 										if (!pic.exists()) {
 											file.write(pic);

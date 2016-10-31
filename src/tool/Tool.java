@@ -19,6 +19,8 @@ public class Tool {
 	private static AtomicLong totalSize = new AtomicLong();
 
 	public static ArrayList<String> imgTypeList = new ArrayList<String>();
+	public static String imgJSUL = "";
+	public static String imgUL = "";
 
 	public static String transMapToString(Map<String, String[]> map) {
 		String mapToString = "";
@@ -37,6 +39,15 @@ public class Tool {
 
 	public static boolean isIMG(String type) {
 		return imgTypeList.contains(type);
+	}
+
+	public static void cacImgUL() {
+		for (String key : Tool.imgTypeList) {
+			imgUL += "image/" + key + ",";
+			imgJSUL += "\"" + key + "\",";
+		}
+		imgUL = imgUL.substring(0, imgUL.length() - 1);
+		imgJSUL = imgJSUL.substring(0, imgJSUL.length() - 1);
 	}
 
 	public static long getFileSize(File file) throws InterruptedException {
