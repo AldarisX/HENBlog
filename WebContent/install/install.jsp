@@ -25,8 +25,6 @@
 			session.setAttribute("uInfo", u);
 			session.setAttribute("isLogin", true);
 
-			GetInstall.jspIndex(true);
-
 			JDBCUtils.saveDBConfig();
 			
 			new OnStartUP().init(this);

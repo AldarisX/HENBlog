@@ -42,10 +42,10 @@ public class OnStartUP extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("获取项目路径");
+		System.out.println("开始获取获取项目路径");
 		try {
 			Config.warLoc = (config.getServletContext().getResource("/")).toString();
-			String osName=System.getProperty("os.name");
+			String osName = System.getProperty("os.name");
 			switch (osName) {
 			case "Linux":
 				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:", ""), "utf-8");
@@ -54,7 +54,7 @@ public class OnStartUP extends HttpServlet {
 				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:/", ""), "utf-8");
 				break;
 			}
-			System.out.println("获取项目路径成功");
+			System.out.println("获取项目路径成功:" + Config.warLoc);
 		} catch (MalformedURLException | UnsupportedEncodingException e) {
 			System.err.println("获取项目路径失败");
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class OnStartUP extends HttpServlet {
 			Config.titleCount = rs.getInt("TABLE_ROWS");
 
 			System.out.println("加载允许的图片类型");
-			JDBC=new JDBCUtils();
+			JDBC = new JDBCUtils();
 			ps = JDBC.getPST("select name from imagetype");
 			rs = JDBC.getQuery(ps);
 			while (rs.next()) {
@@ -123,13 +123,12 @@ public class OnStartUP extends HttpServlet {
 			JDBC.close();
 			Config.isInstall = true;
 			System.out.println("加载完成");
-			GetInstall.jspIndex(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 			System.err.println("发现没有安装,即将进入安装");
 			Config.isInstall = false;
-			GetInstall.jspIndex(false);
 		}
+		GetInstall.jspIndex(Config.isInstall);
 	}
 
 	public void initx() {
