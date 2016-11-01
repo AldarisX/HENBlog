@@ -64,6 +64,7 @@ public class GetBlog extends HttpServlet {
 		case "del":
 			int idd = Integer.parseInt(request.getParameter("id"));
 			new Content().delContent(idd);
+			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "titlejson");
 			Tool.delVMSP(new File(Config.warLoc + "/vmsp/"), "contjson.jsptid-" + idd + "-.json");
 			break;
 		case "addTalk":
