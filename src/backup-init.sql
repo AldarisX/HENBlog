@@ -30,7 +30,7 @@ CREATE TABLE `head` (
   `link` varchar(45) NOT NULL,
   `sindex` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,30 @@ LOCK TABLES `head` WRITE;
 /*!40000 ALTER TABLE `head` DISABLE KEYS */;
 INSERT INTO `head` VALUES (1,'首页','index.jsp',1),(3,'关于我','aboutme.jsp',3),(4,'搜索','search.jsp',2);
 /*!40000 ALTER TABLE `head` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `imagetype`
+--
+
+DROP TABLE IF EXISTS `imagetype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `imagetype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `imagetype`
+--
+
+LOCK TABLES `imagetype` WRITE;
+/*!40000 ALTER TABLE `imagetype` DISABLE KEYS */;
+INSERT INTO `imagetype` VALUES (1,'webp'),(2,'png'),(3,'jpg'),(4,'bmp'),(5,'jpeg');
+/*!40000 ALTER TABLE `imagetype` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -55,7 +79,7 @@ CREATE TABLE `option` (
   `type` varchar(45) NOT NULL,
   `value` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +159,7 @@ CREATE TABLE `user` (
   `email` varchar(64) NOT NULL,
   `level` int(8) DEFAULT '6',
   PRIMARY KEY (`id`,`userName`,`passwd`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +168,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Aldaris','5E2F8C531D572A5A662BE1E69D190254','',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -156,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-23 15:22:52
+-- Dump completed on 2016-11-23 17:34:20

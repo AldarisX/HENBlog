@@ -46,11 +46,16 @@ public class OnStartUP extends HttpServlet {
 		try {
 			Config.warLoc = (config.getServletContext().getResource("/")).toString();
 			String osName = System.getProperty("os.name");
+			if (osName.toLowerCase().contains("windows")) {
+				osName = "Windows";
+			} else if (osName.toLowerCase().contains("linux")) {
+				osName = "Linux";
+			}
 			switch (osName) {
 			case "Linux":
 				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:", ""), "utf-8");
 				break;
-			case "windows":
+			case "Windows":
 				Config.warLoc = URLDecoder.decode(Config.warLoc.replace("file:/", ""), "utf-8");
 				break;
 			}
@@ -122,7 +127,7 @@ public class OnStartUP extends HttpServlet {
 			JDBC.close();
 			Tool.cacImgUL();
 			System.out.println(Tool.imgUL);
-			
+
 			Config.isInstall = true;
 			System.out.println("加载完成");
 		} catch (Exception e) {
